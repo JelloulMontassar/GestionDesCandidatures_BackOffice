@@ -29,5 +29,4 @@ public interface UtilisateurService {
 	
     List<Utilisateur> findUsersByAttributes(Long profileId, Long posteId, String email, String statut);
 
-    String generateRandomPassword();
 }
