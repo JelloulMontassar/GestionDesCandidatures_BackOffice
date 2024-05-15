@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "com.symatique.jwtSecret",
+    "type": "java.lang.String",
+    "description": "A description for 'com.symatique.jwtSecret'"
+  },
+  {
+    "name": "com.symatique.jwtExpirationMs",
+    "type": "java.lang.String",
+    "description": "A description for 'com.symatique.jwtExpirationMs'"
+  }
+]}
