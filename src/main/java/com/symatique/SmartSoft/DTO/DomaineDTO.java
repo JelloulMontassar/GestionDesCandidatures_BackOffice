@@ -1,7 +1,6 @@
 package com.symatique.SmartSoft.DTO;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import com.symatique.SmartSoft.models.Entreprise;
 

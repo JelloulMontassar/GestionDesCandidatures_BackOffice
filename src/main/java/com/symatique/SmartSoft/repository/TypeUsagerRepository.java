@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.symatique.SmartSoft.models.CategorieTypeUsage;
 import com.symatique.SmartSoft.models.TypeUsager;
 
 public interface TypeUsagerRepository extends JpaRepository<TypeUsager, Long> {

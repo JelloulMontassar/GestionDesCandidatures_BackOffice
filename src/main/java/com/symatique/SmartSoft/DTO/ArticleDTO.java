@@ -2,7 +2,6 @@ package com.symatique.SmartSoft.DTO;
 
 import java.util.Date;
 
-import com.symatique.SmartSoft.models.CategorieArticle;
 
 import lombok.Data;
 
