@@ -1,5 +1,7 @@
 package com.symatique.SmartSoft.DTO;
 
+import com.symatique.SmartSoft.models.Candidat;
+
 import java.util.Set;
 
 
@@ -12,12 +14,18 @@ public class SignupRequest {
 
 	private String email;
 
-	private Set<String> profile;
+	private String profile;
 
-	
-	
-	
-	
+	private Candidat candidat;
+
+	public Candidat getCandidat() {
+		return candidat;
+	}
+
+	public void setCandidat(Candidat candidat) {
+		this.candidat = candidat;
+	}
+
 	private String password;
 
 	public String getUsername() {
@@ -36,11 +44,11 @@ public class SignupRequest {
 		this.email = email;
 	}
 
-	public Set<String> getProfile() {
+	public String getProfile() {
 		return profile;
 	}
 
-	public void setProfile(Set<String> profile) {
+	public void setProfile(String profile) {
 		this.profile = profile;
 	}
 

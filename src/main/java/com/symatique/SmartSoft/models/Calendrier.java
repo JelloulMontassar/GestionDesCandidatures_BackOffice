@@ -4,19 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
- 
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "T_Calendrier")
@@ -53,12 +47,22 @@ public class Calendrier implements Serializable {
 	    
 	    @Column(name = "Cal_Supprimer")
 		private boolean supression;
-	    
+	    @OneToOne
+		private Candidat candidat;
+
 
 	    @Column(name = "Cal__Etat") //0:Modifiable & 1:Non Modifiable (Dimanche)
 	    private int etat;
 
-	    public List<Recrutement> getRecrutements() {
+		public Candidat getCandidat() {
+			return candidat;
+		}
+
+		public void setCandidat(Candidat candidat) {
+			this.candidat = candidat;
+		}
+
+		public List<Recrutement> getRecrutements() {
 			return recrutements;
 		}
 

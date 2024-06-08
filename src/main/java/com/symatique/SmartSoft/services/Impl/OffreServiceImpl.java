@@ -64,6 +64,10 @@ public class OffreServiceImpl implements OffreService {
 
 		return existingOffre.isPresent();
 	}
+	@Override
+	public List<Offre> searchOffres(String libelle, String localisation, String description) {
+		return OffreRepository.searchOffres(libelle, localisation, description);
+	}
 
 
 

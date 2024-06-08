@@ -76,6 +76,11 @@ public class ProfileServiceImpl implements ProfileService {
 		// TODO Auto-generated method stub
 		return profileRepository.findByLibelleAndIdEntreprise(libelle, idEntreprise).get();
 	}
-	
+
+	@Override
+	public Profile getCandidatProfile(String candidat) {
+		return profileRepository.findByLibelle(candidat);
+	}
+
 
 }

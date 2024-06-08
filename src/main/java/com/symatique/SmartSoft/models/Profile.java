@@ -1,114 +1,114 @@
-package com.symatique.SmartSoft.models;
+	package com.symatique.SmartSoft.models;
 
-import java.io.Serializable;
-import java.util.List;
+	import java.io.Serializable;
+	import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+	import javax.persistence.Column;
+	import javax.persistence.Entity;
+	import javax.persistence.FetchType;
+	import javax.persistence.GeneratedValue;
+	import javax.persistence.GenerationType;
+	import javax.persistence.Id;
+	import javax.persistence.OneToMany;
+	import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+	import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+	import lombok.AllArgsConstructor;
+	import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity
-@Table(name = "T_Profile")
-public class Profile implements Serializable {
+	@AllArgsConstructor
+	@NoArgsConstructor
+	@Entity
+	@Table(name = "T_Profile")
+	public class Profile implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+		private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "Pro_Id")
-	private Long id;
+		@Id
+		@GeneratedValue(strategy = GenerationType.AUTO)
+		@Column(name = "Pro_Id")
+		private Long id;
 
-	@Column(name = "Pro_Libelle")
-	private String libelle;
+		@Column(name = "Pro_Libelle")
+		private String libelle;
 
-	@Column(name = "Pro_Description")
-	private String description;
+		@Column(name = "Pro_Description")
+		private String description;
 
-	@Column(name = "Pro_Supprimer")
-	private boolean supression;
-	
-	@JsonIgnore
-	@OneToMany(mappedBy = "profile", fetch = FetchType.LAZY)
-	private List<Utilisateur> ListUtilisateurs;
+		@Column(name = "Pro_Supprimer")
+		private boolean supression;
 
-	@OneToMany(mappedBy = "profile")
-	private List<Privilege> listPrivileges;
-	
-	@Column(name = "Ent_Id")
-	private Long idEntreprise;
+		@JsonIgnore
+		@OneToMany(mappedBy = "profile", fetch = FetchType.LAZY)
+		private List<Utilisateur> ListUtilisateurs;
 
-	@Column(name = "Ent_Libelle")
-	private String libelleEntreprise;
+		@OneToMany(mappedBy = "profile")
+		private List<Privilege> listPrivileges;
 
-	public Long getId() {
-		return id;
-	}
+		@Column(name = "Ent_Id")
+		private Long idEntreprise;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+		@Column(name = "Ent_Libelle")
+		private String libelleEntreprise;
 
-	public String getLibelle() {
-		if (libelle != null && !libelle.equals("")) {
-			libelle = libelle.substring(0, 1).toUpperCase() + "" + libelle.substring(1);
+		public Long getId() {
+			return id;
 		}
-		return libelle;
-	}
 
-	public void setLibelle(String libelle) {
-		this.libelle = libelle;
-	}
+		public void setId(Long id) {
+			this.id = id;
+		}
 
-	public String getDescription() {
-		return description;
-	}
+		public String getLibelle() {
+			if (libelle != null && !libelle.equals("")) {
+				libelle = libelle.substring(0, 1).toUpperCase() + "" + libelle.substring(1);
+			}
+			return libelle;
+		}
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+		public void setLibelle(String libelle) {
+			this.libelle = libelle;
+		}
 
-	public List<Privilege> getListPrivileges() {
-		return listPrivileges;
-	}
+		public String getDescription() {
+			return description;
+		}
 
-	public void setListPrivileges(List<Privilege> listPrivileges) {
-		this.listPrivileges = listPrivileges;
-	}
+		public void setDescription(String description) {
+			this.description = description;
+		}
 
-	public boolean isSupression() {
-		return supression;
-	}
+		public List<Privilege> getListPrivileges() {
+			return listPrivileges;
+		}
 
-	public void setSupression(boolean supression) {
-		this.supression = supression;
-	}
+		public void setListPrivileges(List<Privilege> listPrivileges) {
+			this.listPrivileges = listPrivileges;
+		}
 
-	public Long getIdEntreprise() {
-		return idEntreprise;
-	}
+		public boolean isSupression() {
+			return supression;
+		}
 
-	public void setIdEntreprise(Long idEntreprise) {
-		this.idEntreprise = idEntreprise;
-	}
+		public void setSupression(boolean supression) {
+			this.supression = supression;
+		}
 
-	public String getLibelleEntreprise() {
-		return libelleEntreprise;
-	}
+		public Long getIdEntreprise() {
+			return idEntreprise;
+		}
 
-	public void setLibelleEntreprise(String libelleEntreprise) {
-		this.libelleEntreprise = libelleEntreprise;
-	}
+		public void setIdEntreprise(Long idEntreprise) {
+			this.idEntreprise = idEntreprise;
+		}
 
-}
+		public String getLibelleEntreprise() {
+			return libelleEntreprise;
+		}
+
+		public void setLibelleEntreprise(String libelleEntreprise) {
+			this.libelleEntreprise = libelleEntreprise;
+		}
+
+	}

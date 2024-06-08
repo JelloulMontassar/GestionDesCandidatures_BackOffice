@@ -28,9 +28,17 @@ public class OffreController {
 	private OffreService OffreService;
 	
 	@GetMapping("/allOffre")
-	public ResponseEntity<List<Offre>> ListOffre(@RequestParam Long id) {
-		List<Offre> Offres = OffreService.getAllOffres().stream().filter(e -> e.getId() == id).collect(Collectors.toList());
+	public ResponseEntity<List<Offre>> ListOffre() {
+		List<Offre> Offres = OffreService.getAllOffres();
 		return ResponseEntity.status(HttpStatus.OK).body(Offres);
+	}
+	@GetMapping("/searchOffres")
+	public List<Offre> searchOffres(
+			@RequestParam(required = false) String libelle,
+			@RequestParam(required = false) String localisation,
+			@RequestParam(required = false) String description) {
+
+		return OffreService.searchOffres(libelle, localisation, description);
 	}
 
 	@GetMapping("/Offre/{idOffre}")
@@ -69,6 +77,7 @@ public class OffreController {
 	
 	@GetMapping("/Offre/verifierLibelle")
 	public ResponseEntity<Boolean> checkLibelle(@RequestParam String libelle, @RequestParam Long idEntreprise) {
+		System.out.println("libelle : "+libelle);
 		boolean exist = OffreService.checkLibelle(libelle,idEntreprise);
 		return ResponseEntity.status(HttpStatus.OK).body(exist);
 	}

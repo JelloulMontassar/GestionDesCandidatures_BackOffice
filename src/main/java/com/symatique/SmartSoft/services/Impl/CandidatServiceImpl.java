@@ -55,7 +55,12 @@ public class CandidatServiceImpl implements CandidatService {
 		candidatRepository.save(candidat);
 
 	}
-	
+
+	@Override
+	public Candidat getCandidatByUserID(Long id) {
+		return  candidatRepository.findByUtilisateurId(id);
+	}
+
 	@Override
 	public boolean checkLibelle(String libelle, Long idEntreprise) {
 		

@@ -1,5 +1,6 @@
 package com.symatique.SmartSoft.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,4 +15,5 @@ public interface ProfileRepository extends JpaRepository<Profile, Long> {
 	
 	Optional<Profile> findByLibelleAndIdEntreprise(String libelle,Long id);
 
+    Profile findByLibelle(String candidat);
 }

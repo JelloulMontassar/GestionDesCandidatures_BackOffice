@@ -3,6 +3,8 @@ package com.symatique.SmartSoft.controllers;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.symatique.SmartSoft.DTO.CalendrierDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,11 +28,13 @@ public class CalendrierController {
 
 	@Autowired
 	private CalendrierService CalendrierService;
-	
+	@Autowired
+	private ModelMapper modelMapper ;
 	@GetMapping("/allCalendrier")
-	public ResponseEntity<List<Calendrier>> ListCalendrier(@RequestParam Long id) {
-		List<Calendrier> Calendriers = CalendrierService.getAllCalendriers().stream().filter(e -> e.getId() == id).collect(Collectors.toList());
-		return ResponseEntity.status(HttpStatus.OK).body(Calendriers);
+	public ResponseEntity<List<CalendrierDTO>> ListCalendrier() {
+		List<Calendrier> Calendriers = CalendrierService.getAllCalendriers();
+		List<CalendrierDTO> CalendrierDTOS = Calendriers.stream().map(e -> modelMapper.map(e, CalendrierDTO.class)).collect(Collectors.toList());
+		return ResponseEntity.status(HttpStatus.OK).body(CalendrierDTOS);
 	}
 
 	@GetMapping("/Calendrier/{idCalendrier}")
@@ -40,9 +44,9 @@ public class CalendrierController {
 	}
 
 	@PostMapping("/Calendrier")
-	public ResponseEntity<Calendrier> saveCalendrier(@RequestBody Calendrier Calendrier) {
-		CalendrierService.saveCalendrier(Calendrier);
-		return ResponseEntity.status(HttpStatus.CREATED).body(Calendrier);
+	public ResponseEntity<Calendrier> saveCalendrier(@RequestBody Calendrier calendrier) {
+		CalendrierService.saveCalendrier(calendrier);
+		return ResponseEntity.status(HttpStatus.CREATED).body(calendrier);
 	}
 
 	@PutMapping("/Calendrier")

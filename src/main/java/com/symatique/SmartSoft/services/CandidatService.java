@@ -21,4 +21,5 @@ public interface CandidatService {
 
 	void deleteCandidat(Long id);
 
+	Candidat getCandidatByUserID(Long id);
 }

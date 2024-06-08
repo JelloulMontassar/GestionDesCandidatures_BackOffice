@@ -3,15 +3,10 @@ package com.symatique.SmartSoft.models;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -75,12 +70,24 @@ public class Candidat implements Serializable {
 
     @Column(name = "Gov_LibelleTemp")
     private String libelleGouvernoratTemp;
-    
+    @JsonIgnore
     @OneToMany(mappedBy = "candidat")
     private List<Candidature> candidatures;
     
     @OneToMany(mappedBy = "candidat")
     private List<Entretien> entretiens ;
+	@OneToOne(fetch = FetchType.LAZY)
+	private Utilisateur utilisateur;
+	@Column(name = "Can_CV_Path")
+	private String cvPath;
+
+	public String getCvPath() {
+		return cvPath;
+	}
+
+	public void setCvPath(String cvPath) {
+		this.cvPath = cvPath;
+	}
 
 	public List<Entretien> getEntretiens() {
 		return entretiens;
@@ -238,6 +245,11 @@ public class Candidat implements Serializable {
 		this.candidatures = candidatures;
 	}
 
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
 
-
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
 }

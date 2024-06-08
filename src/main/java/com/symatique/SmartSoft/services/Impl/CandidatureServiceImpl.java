@@ -32,7 +32,7 @@ public class CandidatureServiceImpl implements CandidatureService {
 	@Override
 	public List<Candidature> getAllCandidatures() {
 		// TODO Auto-generated method stub
-		return candidatureRepository.findAll().stream().filter(Candidature -> Candidature.isSupression() == false).collect(Collectors.toList());		
+		return candidatureRepository.findAll();
 	}
 
 	@Override

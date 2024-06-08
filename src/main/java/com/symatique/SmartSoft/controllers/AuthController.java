@@ -2,7 +2,14 @@ package com.symatique.SmartSoft.controllers;
 
 
 
+import com.symatique.SmartSoft.models.Candidat;
+import com.symatique.SmartSoft.models.Entreprise;
+import com.symatique.SmartSoft.models.Profile;
+import com.symatique.SmartSoft.services.CandidatService;
+import com.symatique.SmartSoft.services.Impl.CandidatServiceImpl;
+import com.symatique.SmartSoft.services.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
@@ -41,10 +48,12 @@ public class AuthController {
 
 	@Autowired
 	PasswordEncoder encoder;
-
+    @Autowired
+	private CandidatServiceImpl CandidatService;
 	@Autowired
 	JwtUtils jwtUtils;
-
+	@Autowired
+	private ProfileService profileService ;
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
 		Authentication authentication = authenticationManager.authenticate(
@@ -70,8 +79,16 @@ public class AuthController {
 		Utilisateur user = new Utilisateur( signUpRequest.getEmail(),signUpRequest.getUsername(),
 				encoder.encode(signUpRequest.getPassword()));
 
+		Profile Profile = profileService.getCandidatProfile("Candidat");
+		user.setProfile(Profile);
+		Entreprise entreprise = new Entreprise();
+		entreprise.setId(1L);
+		user.setEntreprise(entreprise);
+		Utilisateur saveduser  = userRepository.save(user);
+		Candidat candidat = signUpRequest.getCandidat();
+		candidat.setUtilisateur(saveduser);
+		CandidatService.saveCandidat(candidat);
 
-		userRepository.save(user);
 
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 	}

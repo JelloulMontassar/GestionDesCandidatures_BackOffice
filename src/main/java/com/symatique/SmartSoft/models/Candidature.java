@@ -96,6 +96,9 @@ public class Candidature implements Serializable {
 	    @ManyToOne
 	    @JoinColumn(name = "Cnd_id")
 	    private Candidat candidat;
+		@ManyToOne
+		@JoinColumn(name = "offre_id")
+		private Offre offre;
 	    
 	    @ManyToOne
 	    @JoinColumn(name = "SCa_id")
@@ -108,8 +111,16 @@ public class Candidature implements Serializable {
 	    @ManyToOne
 	    @JoinColumn(name = "Rec_Id")
 	    private Recrutement recrutement;
-	   
-		public Long getId() {
+
+		public Offre getOffre() {
+			return offre;
+		}
+
+		public void setOffre(Offre offre) {
+			this.offre = offre;
+		}
+
+	public Long getId() {
 			return id;
 		}
 

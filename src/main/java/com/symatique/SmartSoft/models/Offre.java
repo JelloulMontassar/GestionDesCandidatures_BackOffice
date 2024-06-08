@@ -34,6 +34,16 @@ public class Offre implements Serializable {
     
     @Column(name = "Evn_dateExpiration")
     private Date dateExpiration;
+	@Column(name = "Off_localisation")
+	private String localisation;
+	@Column(name = "Off_salaire")
+	private double salaire;
+	@Column(name = "Off_requirements")
+	private String requirements;
+	@Column(name = "Off_type")
+	private String type;
+	@Column(name = "Off_benefices")
+	private String benefices;
     
     @Column(name = "Off_description", length = 1000)
     private String description;
@@ -55,6 +65,46 @@ public class Offre implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public double getSalaire() {
+		return salaire;
+	}
+
+	public void setSalaire(double salaire) {
+		this.salaire = salaire;
+	}
+
+	public String getLocalisation() {
+		return localisation;
+	}
+
+	public void setLocalisation(String localisation) {
+		this.localisation = localisation;
+	}
+
+	public String getRequirements() {
+		return requirements;
+	}
+
+	public void setRequirements(String requirements) {
+		this.requirements = requirements;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getBenefices() {
+		return benefices;
+	}
+
+	public void setBenefices(String benefices) {
+		this.benefices = benefices;
 	}
 
 	public String getTitre() {

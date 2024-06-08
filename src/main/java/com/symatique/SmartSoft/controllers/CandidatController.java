@@ -3,6 +3,8 @@ package com.symatique.SmartSoft.controllers;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.symatique.SmartSoft.DTO.CandidatDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,17 +28,21 @@ public class CandidatController {
 
 	@Autowired
 	private CandidatService CandidatService;
-	
+	@Autowired
+	private ModelMapper modelMapper ;
 	@GetMapping("/allCandidat")
-	public ResponseEntity<List<Candidat>> ListCandidat(@RequestParam Long id) {
-		List<Candidat> Candidats = CandidatService.getAllCandidats().stream().filter(e -> e.getId() == id).collect(Collectors.toList());
-		return ResponseEntity.status(HttpStatus.OK).body(Candidats);
+	public ResponseEntity<List<CandidatDTO>> ListCandidat() {
+		List<Candidat> Candidats = CandidatService.getAllCandidats();
+		List<CandidatDTO> CandidatDTOs = Candidats.stream().map(e -> modelMapper.map(e, CandidatDTO.class)).collect(Collectors.toList());
+
+		return ResponseEntity.status(HttpStatus.OK).body(CandidatDTOs);
 	}
 
 	@GetMapping("/Candidat/{idCandidat}")
-	public ResponseEntity<Candidat> getCandidat(@PathVariable("idCandidat") Long id) {
-		Candidat Candidat = CandidatService.getCandidat(id);
-		return ResponseEntity.status(HttpStatus.OK).body(Candidat);
+	public ResponseEntity<CandidatDTO> getCandidat(@PathVariable("idCandidat") Long id) {
+		Candidat Candidat = CandidatService.getCandidatByUserID(id);
+		CandidatDTO CandidatDTO = modelMapper.map(Candidat, CandidatDTO.class);
+		return ResponseEntity.status(HttpStatus.OK).body(CandidatDTO);
 	}
 
 	@PostMapping("/Candidat")
@@ -45,10 +51,16 @@ public class CandidatController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(Candidat);
 	}
 
-	@PutMapping("/Candidat")
-	public Object updateCandidat(@RequestBody Candidat Candidat) {
-		Candidat = CandidatService.updateCandidat(Candidat);
-		return ResponseEntity.status(HttpStatus.CREATED).body(Candidat);
+	@PutMapping("/Candidat/{idCandidat}")
+	public ResponseEntity<CandidatDTO> updateCandidat(@PathVariable Long idCandidat ,@RequestBody Candidat candidat) {
+		Candidat candida = CandidatService.getCandidatByUserID(idCandidat);
+		candida.setAdresse(candidat.getAdresse());
+		candida.setNom(candidat.getNom());
+		candida.setPrenom(candidat.getPrenom());
+		candida.setDateNaissance(candidat.getDateNaissance());
+		Candidat saved = CandidatService.saveCandidat(candida);
+		CandidatDTO CandidatDTO = modelMapper.map(saved, CandidatDTO.class);
+		return ResponseEntity.status(HttpStatus.CREATED).body(CandidatDTO);
 	}
 	
 	 @PutMapping("/Candidat/{id}/suppression")

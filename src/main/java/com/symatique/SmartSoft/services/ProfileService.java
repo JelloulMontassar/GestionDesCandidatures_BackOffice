@@ -24,4 +24,6 @@ public interface ProfileService {
 	boolean checkLibelle(String libelle,Long idEntreprise);
 	
 	Profile getSuperProfile(String libelle ,Long idEntreprise);
+
+	Profile getCandidatProfile(String candidat);
 }

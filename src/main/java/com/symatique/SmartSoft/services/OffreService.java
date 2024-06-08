@@ -20,5 +20,6 @@ public interface OffreService {
 	void deleteOffre(Long id);
 		
 	boolean checkLibelle(String libelle, Long idEntreprise);
+	List<Offre> searchOffres(String libelle, String localisation, String description);
 
 }
