@@ -49,6 +49,11 @@
 			<version>2.4.4</version>
 		</dependency>
 		<dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>mssql-jdbc</artifactId>
+			<version>12.6.2.jre11</version>
+		</dependency>
+		<dependency>
 		    <groupId>org.springdoc</groupId>
 		    <artifactId>springdoc-openapi-ui</artifactId>
 		    <version>1.7.0</version>
