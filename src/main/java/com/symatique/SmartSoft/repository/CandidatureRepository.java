@@ -1,5 +1,6 @@
 package com.symatique.SmartSoft.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,4 +16,5 @@ public interface CandidatureRepository extends JpaRepository<Candidature, Long> 
 
 	Optional<Candidature> findByLibelleAndSupressionAndIdEntreprise(String libelle,boolean supression, Long idEntreprise);
 
+    List<Candidature> findByCandidatId(Long id);
 }

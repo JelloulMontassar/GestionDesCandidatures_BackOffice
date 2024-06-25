@@ -20,6 +20,7 @@ public interface CandidatureService {
 	void deleteCandidature(Long id);
 		
 	boolean checkLibelle(String libelle, Long idEntreprise);
-	
 
+
+    List<Candidature> getCandidatureByCandidat(Long id);
 }

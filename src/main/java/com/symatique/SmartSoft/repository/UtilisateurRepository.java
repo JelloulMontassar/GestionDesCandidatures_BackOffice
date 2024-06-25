@@ -34,4 +34,6 @@ public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> 
 	            @Param("email") String email,
 	            @Param("statut") String statut
 	    );
+
+    Utilisateur getUserByEmail(String email);
 }

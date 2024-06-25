@@ -84,5 +84,8 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	 public List<Utilisateur> findUsersByAttributes(Long profileId, Long posteId, String email, String statut) {
 	        return utilisateurRepository.findUsersByAttributes(profileId, posteId, email, statut);
 	    }
+	public Utilisateur getUserByEmail(String email) {
+		return utilisateurRepository.getUserByEmail(email);
+	}
 
 }

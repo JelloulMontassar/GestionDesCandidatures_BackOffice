@@ -34,7 +34,7 @@ public class DomaineController {
 
 	@GetMapping("/allDomaine")
 	public ResponseEntity<List<DomaineDTO>> ListDomaine(@RequestParam Long id) {
-		List<Domaine> domaines = domaineService.getAllDomaines().stream().filter(e -> e.getEntreprise().getId() == id && !e.isSupression()).collect(Collectors.toList());
+		List<Domaine> domaines = domaineService.getAllDomaines();
 		List<DomaineDTO> ListDomaineDTO = new ArrayList<>();
 
 		for (Domaine domaine : domaines) {

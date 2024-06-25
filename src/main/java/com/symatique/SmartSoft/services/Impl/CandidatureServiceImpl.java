@@ -64,6 +64,11 @@ public class CandidatureServiceImpl implements CandidatureService {
 
 		return existingCandidature.isPresent();
 	}
-	
-	
+
+	@Override
+	public List<Candidature> getCandidatureByCandidat(Long id) {
+		return candidatureRepository.findByCandidatId(id);
+	}
+
+
 }
